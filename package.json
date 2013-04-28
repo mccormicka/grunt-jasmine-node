@@ -1,6 +1,6 @@
 {
   "name": "grunt-jasmine-node",
-  "description": "Grunt task for running jasmine-node",
+  "description": "Grunt task for running jasmine-node, uses a custom build of jasmine-node to enable jscoverage",
   "version": "0.0.6",
   "homepage": "https://github.com/s9tpepper/grunt-jasmine-node",
   "author": {
@@ -22,13 +22,15 @@
     }
   ],
   "main": "grunt.js",
-  "bin": "bin/grunt-jasmine-node",
+  "bin": {
+    "grunt-jasmine-node": "bin/grunt-jasmine-node"
+  },
   "engines": {
     "node": ">=0.8.0"
   },
   "scripts": {},
   "dependencies": {
-    "jasmine-node": "*",
+    "jasmine-node": "https://github.com/mccormicka/jasmine-node/archive/exclusive-tests.tar.gz",
     "coffee-script": "~1.6.2"
   },
   "devDependencies": {
@@ -44,5 +46,11 @@
     "ci",
     "jasmine",
     "jasmine-node"
-  ]
+  ],
+  "readme": "# grunt-jasmine-node\n\nA grunt.js task to run your jasmine feature suite using jasmine-node.\n\n## Getting Started\nInstall this grunt plugin next to your project's grunt.js gruntfile with: `npm install grunt-jasmine-node`\n\nThen add this line to your project's `Gruntfile.js` grunt file:\n\n```javascript\ngrunt.initConfig({\n  jasmine_node: {\n    options: {\n      forceExit: true,\n      match: '.',\n      matchall: false,\n      extensions: 'js',\n      specNameMatcher: 'spec',\n      jUnit: {\n        report: true,\n        savePath : \"./build/reports/jasmine/\",\n        useDotNotation: true,\n        consolidate: true\n      }\n    },\n    all: ['spec/']\n  }\n});\n\ngrunt.loadNpmTasks('grunt-jasmine-node');\n\ngrunt.registerTask('default', ['jasmine_node']);\n```\n\n## Options\n\ndefault options are:\n\n```javascript\n{\n  match: '.',\n  matchall: false,\n  specNameMatcher: 'spec',\n  helperNameMatcher: 'helpers',\n  extensions: 'js',\n  showColors: true,\n  includeStackTrace: true,\n  useHelpers: false,\n  teamcity: false,\n  coffee: false,\n  jUnit: {\n    report: false,\n    savePath : \"./reports/\",\n    useDotNotation: true,\n    consolidate: true\n  }\n}\n```\n\n## Bugs\n\nHelp us squash them by submitting an issue that describes how you encountered it; please be as specific as possible including operating system, node, grunt, and grunt-jasmine-node versions.\n\n## Release History\n\nsee [GitHub Repository](/s9tpepper/grunt-jasmine-node).\n\n## License\nCopyright (c) 2012 \"s9tpepper\" Omar Gonzalez & contributors.\nLicensed under the MIT license.\n",
+  "_id": "grunt-jasmine-node@0.0.6",
+  "dist": {
+    "shasum": "d8f9fcaced77b11fd6ef16ac67af065c2781bb64"
+  },
+  "_from": "grunt-jasmine-node@https://github.com/mccormicka/grunt-jasmine-node/archive/custom.tar.gz"
 }
