@@ -38,6 +38,7 @@ module.exports = function (grunt) {
 
         // Tell grunt this task is asynchronous.
         var done = this.async();
+        options.coverage.done = done;
 
         if (options.coffee) {
             options.extensions = 'js|coffee|litcoffee';
@@ -45,6 +46,10 @@ module.exports = function (grunt) {
         }
         var regExpSpec = new RegExp(options.match + (options.matchall ? "" : options.specNameMatcher + "\\.") + "(" + options.extensions + ")$", 'i');
 
+        if(options.forceExit && options.coverage.cover){
+            options.forceExit = false;
+            options.coverage.coverageForceExit = true;
+        }
         var onComplete = function (runner, log) {
             var exitCode;
             util.print('\n');
@@ -58,7 +63,9 @@ module.exports = function (grunt) {
                 }
             }
             jasmine.getGlobal().jasmine.currentEnv_ = undefined;
-            done();
+            if(!options.coverage.cover){
+                done();
+            }
         };
 
         if (options.useHelpers) {
